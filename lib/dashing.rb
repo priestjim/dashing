@@ -154,6 +154,11 @@ def tilt_html_engines
   end
 end
 
+settings_file = File.join(settings.root, 'config/settings.rb')
+if (File.exists?(settings_file))
+  require settings_file
+end
+
 Dir[File.join(settings.root, 'lib', '**', '*.rb')].each {|file| require file }
 {}.to_json # Forces your json codec to initialize (in the event that it is lazily loaded). Does this before job threads start.
 
